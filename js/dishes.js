@@ -1,3 +1,24 @@
+const categories = [
+    {
+        "key": "burger",
+        "title": "Burger & Sandwiches",
+        "note": "",
+        "icon": "./assets/icons/burger.svg",
+    },
+    {
+        "key": "pizza",
+        "title": "Pizza",
+        "note": "(30cm)",
+        "icon": "./assets/icons/pizza.svg",
+    },
+    {
+        "key": "salad",
+        "title": "Salad",
+        "note": "",
+        "icon": "./assets/icons/salad.svg",
+    },
+];
+
 let dishes = [
     // Burger
     {
@@ -135,7 +156,7 @@ let dishes = [
     {
         "name": "Vegan green salad with tofu",
         "category": "Salad",
-        "image": "./assets/img/Vegan_green_salad_with_tofu.png",
+        "image": "./assets/img/Vegan_green_salad_with_tofu.png ",
         "ingredients": [
             "Green salad",
             "Cherry tomatoes",
