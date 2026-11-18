@@ -1,11 +1,66 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
-        <script src="./js/script.js"></script>
+        <title>BurgerHouse – Bestell App</title>
+        <link rel="stylesheet" href="./CSS/fonts.css" />
+        <link rel="stylesheet" href="./CSS/style.css" />
+
+        <script defer src="./js/dishes.js"></script>
+        <script defer src="./js/helper.js"></script>
+        <script defer src="./js/template.js"></script>
+        <script defer src="./js/script.js"></script>
     </head>
-    <body></body>
+    <body onload="init()">
+        <header id="top">
+            <a class="logo" href="#top">
+                <img src="./assets/icons/logo.svg" alt="" />
+            </a>
+            <button aria-label="Menu">
+                <img src="./assets/icons/menu.svg" alt="" />
+            </button>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div></div>
+                <img
+                    src="./assets/icons/restaurant-logo.svg"
+                    alt="BurgerHouse logo"
+                />
+            </section>
+
+            <section class="info">
+                <div>
+                    <h1><span>Burger</span>House</h1>
+                    <p class="rating">
+                        <img src="./assets/icons/star.svg" alt="" />
+                        <span>4,1</span>
+                        <span>(317)</span>
+                    </p>
+                </div>
+                <p>
+                    The best of Burgers, Pizza, and Greens, all in one great
+                    place.
+                </p>
+            </section>
+
+            <div class="menu-area">
+                <div class="menu" id="menu"></div>
+                <div class="basket-column">
+                    <aside id="basketDesktop"></aside>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <img src="./assets/icons/copyright.svg" alt="" />
+                <span>2025 BurgerHouse</span>
+            </div>
+            <span>Imprint</span>
+            <span>Cookie Preferences</span>
+        </footer>
+    </body>
 </html>
