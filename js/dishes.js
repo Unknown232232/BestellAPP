@@ -112,7 +112,7 @@ let dishes = [
     // Salad
     {
         "name": "Warm beef arugula salad",
-        "category": "Salad",
+        "category": "salad",
         "image": "./assets/img/Warm_beef_arugula_salad.png",
         "ingredients": [
             "Beef",
@@ -127,7 +127,7 @@ let dishes = [
     },
     {
         "name": "Mini green Salad",
-        "category": "Salad",
+        "category": "salad",
         "image": "./assets/img/Mini_green_Salad.png",
         "ingredients": [
             "Green salad",
@@ -140,7 +140,7 @@ let dishes = [
     },
     {
         "name": "Green Salad with sea food",
-        "category": "Salad",
+        "category": "salad",
         "image": "./assets/img/Green_Salad_with_sea_food.png",
         "ingredients": [
             "Mixed greens",
@@ -155,7 +155,7 @@ let dishes = [
     },
     {
         "name": "Vegan green salad with tofu",
-        "category": "Salad",
+        "category": "salad",
         "image": "./assets/img/Vegan_green_salad_with_tofu.png ",
         "ingredients": [
             "Green salad",
