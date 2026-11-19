@@ -1,4 +1,5 @@
 const deliveryFee = 4.99;
+const confirmationDuration = 4000;
 
 let basket = [];
 let confirmationTimer;
@@ -9,6 +10,7 @@ let confirmationTimer;
 function init() {
     renderMenu();
     renderBasket();
+    showConfirmation();
 }
 
 /**
@@ -201,4 +203,42 @@ function updateBasketCount() {
     const badge = document.getElementById("basketCount");
     badge.textContent = count;
     badge.hidden = count === 0;
+}
+
+/**
+ * Places the test order: empties the basket and shows the confirmation.
+ */
+function placeOrder() {
+    basket = [];
+    renderBasket();
+    closeBasketDialog();
+    showConfirmation();
+}
+
+/**
+ * Opens the order confirmation and closes it automatically after a while.
+ */
+function showConfirmation() {
+    const dialog = document.getElementById("confirmationDialog");
+    clearTimeout(confirmationTimer);
+    dialog.style.opacity = "1";
+    dialog.showModal();
+    confirmationTimer = setTimeout(closeConfirmation, confirmationDuration);
+}
+
+/**
+ * Fades the order confirmation out and closes it.
+ */
+function closeConfirmation() {
+    const dialog = document.getElementById("confirmationDialog");
+    clearTimeout(confirmationTimer);
+    dialog.style.opacity = "0";
+    setTimeout(() => dialog.close(), 400);
+}
+
+/**
+ * Closes the basket dialog of the mobile view.
+ */
+function closeBasketDialog() {
+    document.getElementById("basketDialog").close();
 }
