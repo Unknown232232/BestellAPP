@@ -10,7 +10,7 @@ let confirmationTimer;
 function init() {
     renderMenu();
     renderBasket();
-    showConfirmation();
+    registerResizeListener();
 }
 
 /**
@@ -241,4 +241,20 @@ function closeConfirmation() {
  */
 function closeBasketDialog() {
     document.getElementById("basketDialog").close();
+}
+
+/**
+ * Opens the basket as a dialog (mobile view).
+ */
+function openBasketDialog() {
+    document.getElementById("basketDialog").showModal();
+}
+
+/**
+ * Closes the basket dialog automatically when the window becomes wide
+ * enough to show the desktop basket.
+ */
+function registerResizeListener() {
+    const desktop = window.matchMedia("(min-width: 1001px)");
+    desktop.addEventListener("change", closeBasketDialog);
 }
