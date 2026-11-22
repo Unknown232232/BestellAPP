@@ -4,8 +4,16 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BurgerHouse – Bestell App</title>
-        <link rel="stylesheet" href="./CSS/fonts.css" />
-        <link rel="stylesheet" href="./CSS/style.css" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="./assets/icons/favicon.svg"
+        />
+        <link rel="stylesheet" href="./css/fonts.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/menu.css" />
+        <link rel="stylesheet" href="./css/basket.css" />
+        <link rel="stylesheet" href="./css/responsive.css" />
 
         <script defer src="./js/dishes.js"></script>
         <script defer src="./js/helper.js"></script>
@@ -46,6 +54,8 @@
                 </p>
             </section>
 
+            <nav class="category-nav" id="categoryNav"></nav>
+
             <div class="menu-area">
                 <div class="menu" id="menu"></div>
                 <div class="basket-column">
@@ -62,5 +72,52 @@
             <span>Imprint</span>
             <span>Cookie Preferences</span>
         </footer>
+
+        <nav class="mobile-nav">
+            <a href="#top" aria-label="Home">
+                <img src="./assets/icons/home.svg" alt="" />
+            </a>
+            <button aria-label="Profile">
+                <img src="./assets/icons/profile.svg" alt="" />
+            </button>
+            <button aria-label="Orders">
+                <img src="./assets/icons/orders.svg" alt="" />
+            </button>
+            <button onclick="openBasketDialog()" aria-label="Open basket">
+                <img src="./assets/icons/basket.svg" alt="" />
+                <span id="basketCount" hidden>0</span>
+            </button>
+        </nav>
+
+        <dialog
+            class="basket-dialog"
+            id="basketDialog"
+            onclick="closeOnBackdropClick(event)"
+        >
+            <div id="basketDialogContent"></div>
+            <button onclick="closeBasketDialog()" aria-label="Close basket">
+                <img src="./assets/icons/close.svg" alt="" />
+            </button>
+        </dialog>
+
+        <dialog
+            class="confirmation-dialog"
+            id="confirmationDialog"
+            onclick="closeOnBackdropClick(event)"
+        >
+            <div>
+                <button
+                    onclick="closeConfirmation()"
+                    aria-label="Close message"
+                >
+                    <img src="./assets/icons/close.svg" alt="" />
+                </button>
+                <div>
+                    <img src="./assets/icons/confirmation.svg" alt="" />
+                    <h2>Order confirmed!</h2>
+                    <p id="confirmationText">Your food is on the way!</p>
+                </div>
+            </div>
+        </dialog>
     </body>
 </html>

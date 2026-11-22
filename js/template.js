@@ -34,7 +34,7 @@ function getDishTemplate(index, image, name, ingredients, price) {
             </div>
             <div>
                 <span>${price}</span>
-                <button onclick="addToBasket(${index})">Add to basket</button>
+                <button id="addButton${index}" aria-pressed="false" onclick="addToBasket(${index})">Add to basket</button>
             </div>
         </li>`;
 }
@@ -55,22 +55,36 @@ function getEmptyBasketTemplate() {
 /**
  * Template for the basket with dishes, prices and the order button.
  * @param {string} items - HTML of all basket items.
- * @param {string} subtotal - Formatted sum of all dishes.
- * @param {string} fee - Formatted delivery fee.
- * @param {string} total - Formatted total price.
+ * @param {string} modeSwitch - HTML of the delivery / pickup switch.
+ * @param {{subtotal: string, feeLabel: string, fee: string, total: string}} prices - Formatted prices.
  * @returns {string} The HTML of the filled basket.
  */
-function getFilledBasketTemplate(items, subtotal, fee, total) {
+function getFilledBasketTemplate(items, modeSwitch, prices) {
     return `
         <div class="basket-full">
             <h2>Your Basket</h2>
+            ${modeSwitch}
             <ul class="basket-items">${items}</ul>
             <div class="basket-totals">
-                <div><span>Subtotal</span><span>${subtotal}</span></div>
-                <div><span>Delivery fee</span><span>${fee}</span></div>
-                <div><span>Total</span><span>${total}</span></div>
-                <button onclick="placeOrder()">Buy now (${total})</button>
+                <div><span>Subtotal</span><span>${prices.subtotal}</span></div>
+                <div><span>${prices.feeLabel}</span><span>${prices.fee}</span></div>
+                <div><span>Total</span><span>${prices.total}</span></div>
+                <button onclick="placeOrder()">Buy now (${prices.total})</button>
             </div>
+        </div>`;
+}
+
+/**
+ * Template for the switch between delivery and pickup.
+ * @param {boolean} isDelivery - True when delivery is selected.
+ * @param {boolean} isPickup - True when pickup is selected.
+ * @returns {string} The HTML of the switch.
+ */
+function getDeliveryModeTemplate(isDelivery, isPickup) {
+    return `
+        <div class="delivery-switch">
+            <button aria-pressed="${isDelivery}" onclick="setDeliveryMode('delivery')">Delivery</button>
+            <button aria-pressed="${isPickup}" onclick="setDeliveryMode('pickup')">Pickup</button>
         </div>`;
 }
 
@@ -138,4 +152,14 @@ function getDeleteButtonTemplate(index) {
         <button onclick="removeFromBasket(${index})" aria-label="Remove dish">
             <img src="./assets/icons/delete.svg" alt="" />
         </button>`;
+}
+
+/**
+ * Template for one button that scrolls to a category.
+ * @param {string} key - Category key, used as the target id.
+ * @param {string} title - Category title shown on the button.
+ * @returns {string} The HTML of the link.
+ */
+function getCategoryLinkTemplate(key, title) {
+    return `<a href="#${key}">${title}</a>`;
 }

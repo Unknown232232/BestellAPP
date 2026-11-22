@@ -1,0 +1,278 @@
+/* Basket (desktop) */
+.basket-column {
+    position: absolute;
+    top: 28px;
+    bottom: 0;
+    right: max(0px, calc((100% - 1440px) / 2));
+    width: 435px;
+    pointer-events: none;
+
+    & > aside {
+        position: sticky;
+        top: 0;
+        height: 794px;
+        max-height: 100vh;
+        pointer-events: auto;
+    }
+}
+
+.basket-empty,
+.basket-full {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    height: 100%;
+    padding: 59px 31px;
+    border-radius: 30px 0 0 30px;
+
+    & > h2 {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+}
+
+.basket-empty {
+    background: #363534;
+    color: #fdeadc;
+
+    & > p {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    & > img {
+        width: 120px;
+        height: 120px;
+        margin-top: 24px;
+    }
+}
+
+.basket-full {
+    background: #363534;
+    color: #fdeadc;
+    gap: 20px;
+}
+
+.basket-items {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #e6e5e5 transparent;
+}
+
+.basket-item {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 8px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fdeadc;
+    color: #363534;
+
+    & > div {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    & > div:nth-of-type(2) {
+        align-items: center;
+    }
+
+    & h3 {
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    & span {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    & > div:nth-of-type(1) > button {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.basket-item > div:nth-of-type(2) > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 24px;
+    font-weight: 600;
+
+    & > span {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    & > button {
+        min-width: 24px;
+        height: 29px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    & img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.delivery-switch {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    padding: 4px;
+    border-radius: 30px;
+    background: #726d6d;
+
+    & > button {
+        flex: 1;
+        height: 36px;
+        border-radius: 26px;
+        color: #fdeadc;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1;
+        transition: background 150ms;
+
+        &[aria-pressed="true"] {
+            background: #e76c1f;
+            color: #fff;
+        }
+    }
+}
+
+.basket-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+
+    & > div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & > div:nth-of-type(3) {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 3px solid #fff;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    & > button {
+        height: 64px;
+        margin-top: 12px;
+        border-radius: 60px;
+        background: #e76c1f;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 700;
+        transition: background 150ms;
+
+        &:hover {
+            background: #e76c1f;
+        }
+    }
+}
+
+/* Dialogs */
+dialog {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #363534;
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.basket-dialog {
+    width: min(343px, calc(100vw - 32px));
+    height: min(707px, calc(100vh - 32px));
+
+    & > div {
+        height: 100%;
+    }
+
+    & > button {
+        position: absolute;
+        top: 21px;
+        right: 21px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    & .basket-empty,
+    & .basket-full {
+        padding: 38px 22px 40px;
+        border-radius: 30px;
+    }
+}
+
+.confirmation-dialog {
+    width: min(415px, calc(100vw - 32px));
+    border-radius: 30px;
+    background: #363534;
+    color: #fdeadc;
+    transition: opacity 400ms;
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 26px;
+        padding: 32px 40px;
+    }
+
+    & > div > button {
+        width: 16px;
+        height: 16px;
+    }
+
+    & > div > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+        text-align: center;
+    }
+
+    & h2 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    & p {
+        font-size: 29px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+}

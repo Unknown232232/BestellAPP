@@ -2,12 +2,14 @@ const deliveryFee = 4.99;
 const confirmationDuration = 4000;
 
 let basket = [];
+let deliveryMode = "delivery";
 let confirmationTimer;
 
 /**
  * Starts the page: renders the menu and the empty basket.
  */
 function init() {
+    renderCategoryNav();
     renderMenu();
     renderBasket();
     registerResizeListener();
@@ -114,6 +116,7 @@ function renderBasket() {
     renderBasketInto("basketDesktop", html);
     renderBasketInto("basketDialogContent", html);
     updateBasketCount();
+    updateAddButtons();
 }
 
 /**
@@ -137,11 +140,38 @@ function renderBasketInto(containerId, html) {
  * @returns {string} The HTML of the filled basket.
  */
 function getFilledBasketHtml() {
-    const subtotal = formatPrice(getSubtotal());
-    const fee = formatPrice(deliveryFee);
-    const total = formatPrice(getSubtotal() + deliveryFee);
-    const items = getBasketItemsHtml();
-    return getFilledBasketTemplate(items, subtotal, fee, total);
+    const isDelivery = deliveryMode === "delivery";
+    const modeSwitch = getDeliveryModeTemplate(isDelivery, !isDelivery);
+    return getFilledBasketTemplate(
+        getBasketItemsHtml(),
+        modeSwitch,
+        getBasketPrices(isDelivery),
+    );
+}
+
+/**
+ * Calculates and formats all prices shown in the basket.
+ * @param {boolean} isDelivery - True for delivery, false for pickup.
+ * @returns {{subtotal: string, feeLabel: string, fee: string, total: string}} The prices.
+ */
+function getBasketPrices(isDelivery) {
+    const subtotal = getSubtotal();
+    const fee = isDelivery ? deliveryFee : 0;
+    return {
+        subtotal: formatPrice(subtotal),
+        feeLabel: isDelivery ? "Delivery fee" : "Pickup",
+        fee: isDelivery ? formatPrice(fee) : "Free",
+        total: formatPrice(subtotal + fee),
+    };
+}
+
+/**
+ * Switches between delivery and pickup and updates the basket.
+ * @param {string} mode - Either "delivery" or "pickup".
+ */
+function setDeliveryMode(mode) {
+    deliveryMode = mode;
+    renderBasket();
 }
 
 /**
@@ -212,7 +242,19 @@ function placeOrder() {
     basket = [];
     renderBasket();
     closeBasketDialog();
+    updateConfirmationText();
     showConfirmation();
+}
+
+/**
+ * Sets the confirmation text depending on delivery or pickup.
+ */
+function updateConfirmationText() {
+    const text =
+        deliveryMode === "delivery"
+            ? "Your food is on the way!"
+            : "Your food will be ready for pickup!";
+    document.getElementById("confirmationText").textContent = text;
 }
 
 /**
@@ -257,4 +299,28 @@ function openBasketDialog() {
 function registerResizeListener() {
     const desktop = window.matchMedia("(min-width: 1001px)");
     desktop.addEventListener("change", closeBasketDialog);
+}
+
+/**
+ * Shows "Added" with the amount on the buttons of all dishes that are
+ * in the basket, and "Add to basket" on all others.
+ */
+function updateAddButtons() {
+    for (let i = 0; i < dishes.length; i++) {
+        const item = basket.find((entry) => entry.name === dishes[i].name);
+        const button = document.getElementById(`addButton${i}`);
+        button.textContent = item ? `Added ${item.amount}` : "Add to basket";
+        button.setAttribute("aria-pressed", Boolean(item));
+    }
+}
+
+/**
+ * Renders one button per category that scrolls to its section.
+ */
+function renderCategoryNav() {
+    let html = "";
+    for (let i = 0; i < categories.length; i++) {
+        html += getCategoryLinkTemplate(categories[i].key, categories[i].title);
+    }
+    document.getElementById("categoryNav").innerHTML = html;
 }
