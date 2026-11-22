@@ -4,7 +4,7 @@
 }
 
 @media (max-width: 1000px) {
-    body {
+    body:has(.mobile-nav) {
         padding-bottom: 78px;
     }
 
@@ -21,7 +21,9 @@
         padding: 24px 16px 0;
 
         & > div {
-            height: 346px;
+            width: 100%;
+            aspect-ratio: 343 / 346;
+            height: auto;
             border-radius: 16px;
             background-position: 25% center;
         }
@@ -49,6 +51,16 @@
 
         & h1 {
             font-size: 40px;
+        }
+    }
+
+    .category-nav {
+        gap: 12px;
+        padding-bottom: 24px;
+
+        & > a {
+            padding: 6px 16px;
+            font-size: 16px;
         }
     }
 
@@ -116,16 +128,6 @@
         }
     }
 
-    .category-nav {
-        gap: 12px;
-        padding-bottom: 24px;
-
-        & > a {
-            padding: 6px 16px;
-            font-size: 16px;
-        }
-    }
-
     .mobile-nav {
         position: fixed;
         left: 0;
@@ -134,7 +136,8 @@
         z-index: 5;
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
+        gap: min(64px, calc((100vw - 152px) / 3));
         padding: 24px 16px;
         background: #363534;
 
@@ -148,6 +151,10 @@
         & img {
             width: 30px;
             height: 30px;
+        }
+
+        & > button:has(> span:not([hidden])) > img {
+            content: url("../assets/icons/basket-filled.svg");
         }
 
         & > button > span {
