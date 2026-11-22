@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: #363534;
+    font-family: "Palanquin", sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+}
+
+/* Header */
+header {
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: max(16px, calc((100% - 1440px) / 2 + 20px));
+    padding-right: max(16px, calc((100% - 1440px) / 2 + 36px));
+    background: #e76c1f;
+
+    & > button {
+        width: 60px;
+        height: 60px;
+    }
+
+    & > button > img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+
+    & > img {
+        height: 38px;
+    }
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+    }
+
+    & > div > span:first-child {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    & > div > span:last-child {
+        font-size: 28px;
+        font-weight: 700;
+    }
+}
+
+/* Hero */
+main {
+    flex: 1;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > div {
+        width: 100%;
+        max-width: 1440px;
+        height: 439px;
+        background:
+            url("../assets/img/hero.jpg") center / cover,
+            linear-gradient(135deg, #f7a35c, #e76c1f);
+    }
+
+    & > img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin-top: -135px;
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
+    }
+}
+
+/* Restaurant info */
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 22px 16px 52px;
+    text-align: center;
+
+    & > div {
+        display: flex;
+        align-items: baseline;
+        gap: 26px;
+    }
+
+    & > p {
+        max-width: 872px;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    & h1 {
+        font-family: "Palanquin Dark", sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    & h1 > span {
+        color: #e76c1f;
+    }
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 5px;
+    border-radius: 4px;
+    background: #facaac;
+    line-height: 1.2;
+
+    & > img {
+        width: 24px;
+        height: 23px;
+    }
+
+    & > span:nth-of-type(1) {
+        font-family: "Palanquin Dark", sans-serif;
+        font-size: 20px;
+    }
+
+    & > span:nth-of-type(2) {
+        color: #726d6d;
+        font-size: 18px;
+    }
+}
+
+/* Footer */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 72px;
+    min-height: 128px;
+    padding: 32px 16px;
+    background: #e76c1f;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.2;
+
+    & > div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+}
