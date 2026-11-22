@@ -23,6 +23,7 @@
         & > div {
             height: 346px;
             border-radius: 16px;
+            background-position: 25% center;
         }
 
         & > img {
@@ -38,6 +39,7 @@
 
         & > div {
             flex-direction: column-reverse;
+            align-items: center;
             gap: 16px;
         }
 
@@ -114,6 +116,16 @@
         }
     }
 
+    .category-nav {
+        gap: 12px;
+        padding-bottom: 24px;
+
+        & > a {
+            padding: 6px 16px;
+            font-size: 16px;
+        }
+    }
+
     .mobile-nav {
         position: fixed;
         left: 0;
@@ -140,17 +152,18 @@
 
         & > button > span {
             position: absolute;
-            top: -10px;
-            right: -12px;
-            min-width: 20px;
-            height: 20px;
-            padding: 0 5px;
-            border-radius: 10px;
+            top: -8px;
+            right: -10px;
+            min-width: 18px;
+            height: 18px;
+            padding: 0 4px;
+            border-radius: 9px;
             background: #e76c1f;
+            box-shadow: 0 0 0 2px #363534;
             color: #fff;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
-            line-height: 20px;
+            line-height: 18px;
             text-align: center;
         }
 
