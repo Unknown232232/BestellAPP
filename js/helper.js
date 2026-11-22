@@ -6,3 +6,13 @@
 function formatPrice(price) {
     return price.toFixed(2).replace(".", ",") + " €";
 }
+
+/**
+ * Closes a dialog when the click hit the backdrop and not its content.
+ * @param {MouseEvent} event - The click event of the dialog.
+ */
+function closeOnBackdropClick(event) {
+    if (event.target === event.currentTarget) {
+        event.currentTarget.close();
+    }
+}
